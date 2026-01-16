@@ -1,0 +1,16 @@
+# services:
+#   catalogdb:
+#     image: postgres
+
+# volumes:
+#   postgres_catalog:
+
+
+services:
+  catalogdb:
+    image: postgres:15
+    container_name: catalogdb
+
+volumes:
+  postgres_catalog:
+
