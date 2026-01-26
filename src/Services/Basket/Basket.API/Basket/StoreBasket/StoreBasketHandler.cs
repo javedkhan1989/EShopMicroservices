@@ -1,4 +1,4 @@
-﻿using Basket.API.Basket.StoreBasket;
+﻿
 
 
 namespace Basket.API.Basket.StoreBasket
@@ -17,7 +17,7 @@ namespace Basket.API.Basket.StoreBasket
     }
 }
 
-public class StoreBasketCommandHandler
+public class StoreBasketCommandHandler(IBasketRepository repository)
 : ICommandHandler<StoreBasketCommand, StoreBasketResult>
 {
     public async Task<StoreBasketResult> Handle(StoreBasketCommand command, CancellationToken cancellationToken)
@@ -26,8 +26,9 @@ public class StoreBasketCommandHandler
 
         //TODO: store basket in database (use Marten upsert - if exist = update,)
         //TODO: update cache
+        await repository.StoreBasket(command.Cart, cancellationToken);
 
-        return new StoreBasketResult("swn");
+        return new StoreBasketResult(command.Cart.UserName);
     }
 }
 
