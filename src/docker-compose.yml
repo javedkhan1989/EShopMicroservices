@@ -14,6 +14,9 @@ services:
     image: postgres:15
     container_name: catalogdb
 
+  distributedcahe:
+    image: redis
+
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
